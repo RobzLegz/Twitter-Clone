@@ -10,17 +10,25 @@ import ListAltOutlinedIcon from '@material-ui/icons/ListAltOutlined';
 import PersonOutlineOutlinedIcon from '@material-ui/icons/PersonOutlineOutlined';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import { Avatar, Button } from '@material-ui/core';
-import { useSelector } from 'react-redux';
-import { selectUser } from '../features/userSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout, selectUser } from '../features/userSlice';
+import { auth } from '../firebase';
 
 const SidebarLeft = () => {
 
     const user = useSelector(selectUser);
+    const dispatch = useDispatch();
+
+
+    const logoutFunction = () => {
+        dispatch(logout());
+        auth.signOut();
+    }
 
     return (
         <StyledLeftSidebar>
             <StyledLeftSidebarHeader>
-                <img src={Logo} alt="logo"/>
+                <img onClick={logoutFunction} src={Logo} alt="logo"/>
             </StyledLeftSidebarHeader>
             <StyledLeftSidebarLinks>
                 <StyledLeftSidebarLink style={{color: "#1DA1F2"}}>
@@ -85,6 +93,7 @@ const StyledLeftSidebarHeader = styled.div`
     height: 40px;
     >img{
         height: 40px;
+        cursor: pointer;
     }
 `;
 const StyledLeftSidebarLinks = styled.div`

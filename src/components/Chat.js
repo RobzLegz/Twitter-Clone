@@ -65,7 +65,7 @@ const Chat = () => {
                 </StyledChatTwitter>
                 <StyledChatMessages>
                     {tweets?.map((tweet) => (
-                        <Tweet key={tweet.id} id={tweet.id} userPhoto={tweet.userPhoto} username={tweet.username} tweet={tweet.tweetMessage} />
+                        <Tweet key={tweet.id} id={tweet.id} timestamp={tweet.timestamp} userPhoto={tweet.userPhoto} username={tweet.username} tweet={tweet.tweetMessage} />
                     ))}
                 </StyledChatMessages>
             </StyledChatBody>

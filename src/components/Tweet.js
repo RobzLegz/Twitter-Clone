@@ -6,8 +6,9 @@ import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
 import RepeatIcon from '@material-ui/icons/Repeat';
 import PublishIcon from '@material-ui/icons/Publish';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import * as timeago from 'timeago.js';
 
-const Tweet = ({tweet,userPhoto,username, id}) => {
+const Tweet = ({tweet,userPhoto,username, id,timestamp}) => {
     return (
         <StyledTweet>
             <Avatar src={userPhoto} />
@@ -15,7 +16,7 @@ const Tweet = ({tweet,userPhoto,username, id}) => {
                 <div className="tweet__header">
                     <div className="tweet__header--left">
                         <h5>{username}</h5>
-                        <p>15h</p>
+                        <p>{timeago.format(new Date(timestamp?.toDate()).toLocaleString())}</p>
                     </div>
                     <Button variant="circled"><MoreHorizIcon /></Button>
                 </div>
