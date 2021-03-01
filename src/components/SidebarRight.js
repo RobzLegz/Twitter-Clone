@@ -38,7 +38,7 @@ const SidebarRight = () => {
                         <small><p>80,363 Tweets</p></small>
                     </StyledInfo>
                     <StyledInfo>
-                        <p style={{color: "#1DA1F2", fontSize: "18px"}}>Show more</p>
+                        <p style={{color: "#1DA1F2", fontSize: "18px", cursor: "pointer"}}>Show more</p>
                     </StyledInfo>
                 </div>
             </StyledRightInfoBox>
@@ -72,7 +72,7 @@ const SidebarRight = () => {
                         <Button>Follow</Button>
                     </StyledFollowProfiles>
                     <StyledInfo>
-                        <p style={{color: "#1DA1F2", fontSize: "18px"}}>Show more</p>
+                        <p style={{color: "#1DA1F2", fontSize: "18px", cursor: "pointer"}}>Show more</p>
                     </StyledInfo>
                 </div>
             </StyledRightInfoBox>
