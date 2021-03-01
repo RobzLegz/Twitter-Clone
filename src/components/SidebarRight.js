@@ -13,7 +13,7 @@ const SidebarRight = () => {
             </form>
             <StyledRightInfoBox>
                 <div className="info__box--header">
-                    <h2>Trends for you</h2>
+                    <h3>Trends for you</h3>
                     <SettingsIcon />
                 </div>
                 <div className="info__box--container">
@@ -44,7 +44,7 @@ const SidebarRight = () => {
             </StyledRightInfoBox>
             <StyledRightInfoBox>
                 <div className="info__box--header">
-                    <h2>Who to follow</h2>
+                    <h3>Who to follow</h3>
                 </div>
                 <div className="info__box--container">
                     <StyledFollowProfiles>
@@ -73,7 +73,29 @@ const SidebarRight = () => {
 const StyledRightSidebar = styled.div`
     flex: 0.35;
     display: flex;
-    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 20px 0; 
+    >form{
+        width: fit-content;
+        height: 40px;
+        align-items: center;
+        display: flex;
+        margin-left: 10px;
+        background-color:#EBEEF0;
+        padding: 0 40px 0 20px;
+        border-radius: 999px;
+        >.MuiSvgIcon-root{
+            color:grey;
+        }
+        >input{
+            background:transparent;
+            outline: none;
+            border:none;
+            font-size: 1rem;
+            padding-left: 10px;
+        }
+    }
 `;
 const StyledRightInfoBox = styled.div`
 
