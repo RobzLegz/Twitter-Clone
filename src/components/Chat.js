@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
 import StarOutlineIcon from '@material-ui/icons/StarOutline';
 import { Avatar, Button } from '@material-ui/core';
@@ -7,8 +7,34 @@ import EmojiEmotionsOutlinedIcon from '@material-ui/icons/EmojiEmotionsOutlined'
 import ListAltOutlinedIcon from '@material-ui/icons/ListAltOutlined';
 import GifIcon from '@material-ui/icons/Gif';
 import TodayIcon from '@material-ui/icons/Today';
+import db from '../firebase';
+import firebase from "firebase";
+import Tweet from './Tweet';
 
 const Chat = () => {
+
+    const [tweetMessage, setTweetMessage] = useState("");
+    const [tweets, setTweets] = useState([]);
+
+    const submitTweet = (e) => {
+        e.preventDefault();
+        if(tweetMessage !== ""){
+            db.collection("tweets").add({
+                tweetMessage: tweetMessage,
+                timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+            })
+        }else{
+            return;
+        }        
+        setTweetMessage("");
+    }
+
+    useEffect(() => {
+        db.collection("tweets").orderBy("timestamp", "desc").onSnapshot((snapshot) => (
+            setTweets(snapshot.docs.map((doc) => doc.data()))
+        ))
+    }, [])
+
     return (
         <StyledChat>
             <StyledChatHeader>
@@ -19,7 +45,7 @@ const Chat = () => {
                 <StyledChatTwitter>
                     <Avatar />
                     <form>
-                        <input type="text" placeholder="What's happening?" required />
+                        <input type="text" value={tweetMessage} onChange={(e) => setTweetMessage(e.target.value)} placeholder="What's happening?" required />
                         <div className="tweeting__bottom">
                             <div className="tweeting__bottom--icons">
                                 <ImageOutlinedIcon />
@@ -28,12 +54,14 @@ const Chat = () => {
                                 <EmojiEmotionsOutlinedIcon />
                                 <TodayIcon />
                             </div>
-                            <Button type="submit">Tweet</Button>
+                            <Button type="submit" onClick={submitTweet}>Tweet</Button>
                         </div>
                     </form>
                 </StyledChatTwitter>
                 <StyledChatMessages>
-
+                    {tweets?.map((tweet) => (
+                        <Tweet key={tweet.id} id={tweet.id} tweet={tweet.tweetMessage} />
+                    ))}
                 </StyledChatMessages>
             </StyledChatBody>
         </StyledChat>
