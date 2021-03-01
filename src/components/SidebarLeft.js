@@ -18,47 +18,49 @@ const SidebarLeft = () => {
                 <img src={Logo} alt="logo"/>
             </StyledLeftSidebarHeader>
             <StyledLeftSidebarLinks>
-                <StyledLeftSidebarLink>
+                <StyledLeftSidebarLink style={{color: "#1DA1F2"}}>
                     <HomeOutlinedIcon />
                     <h4>Home</h4>
                 </StyledLeftSidebarLink>
                 <StyledLeftSidebarLink>
                     <AlternateEmailIcon />
-                    <h4>Home</h4>
+                    <h4>Explore</h4>
                 </StyledLeftSidebarLink>
                 <StyledLeftSidebarLink>
                     <NotificationsNoneOutlinedIcon />
-                    <h4>Home</h4>
+                    <h4>Notifications</h4>
                 </StyledLeftSidebarLink>
                 <StyledLeftSidebarLink>
                     <EmailOutlinedIcon />
-                    <h4>Home</h4>
+                    <h4>Messages</h4>
                 </StyledLeftSidebarLink>                
                 <StyledLeftSidebarLink>
                     <BookmarkBorderOutlinedIcon />
-                    <h4>Home</h4>
+                    <h4>Bookmarks</h4>
                 </StyledLeftSidebarLink>
                 <StyledLeftSidebarLink>
                     <ListAltOutlinedIcon />
-                    <h4>Home</h4>
+                    <h4>Lists</h4>
                 </StyledLeftSidebarLink>
                 <StyledLeftSidebarLink>
                     <PersonOutlineOutlinedIcon />
-                    <h4>Home</h4>
+                    <h4>Profile</h4>
                 </StyledLeftSidebarLink>
                 <StyledLeftSidebarLink>
                     <MoreHorizIcon />
-                    <h4>Home</h4>
+                    <h4>More</h4>
                 </StyledLeftSidebarLink>
                 <Button>Tweet</Button>
             </StyledLeftSidebarLinks>
             <StyledLeftSidebarProfile>
-                <Avatar />
-                <div className="profile__middle">
-                    <strong><p>Rob</p></strong>
-                    <small><p>@Robzlegz</p></small>
-                </div>
                 <div className="profile__left">
+                    <Avatar />
+                    <div className="profile__middle">
+                        <strong><p>Rob</p></strong>
+                        <small><p>@Robzlegz</p></small>
+                    </div>
+                </div>
+                <div className="profile__right">
                     <MoreHorizIcon />
                 </div>
             </StyledLeftSidebarProfile>
@@ -66,19 +68,80 @@ const SidebarLeft = () => {
     )
 }
 const StyledLeftSidebar = styled.div`
-
+    flex: 0.35;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: flex-end;
+    border-right: 1px solid lightgrey;
 `;
 const StyledLeftSidebarHeader = styled.div`
-
+    width: 300px;
+    height: 40px;
+    >img{
+        height: 40px;
+    }
 `;
 const StyledLeftSidebarLinks = styled.div`
-    color:#1DA1F2;
+    width: 300px;
+    color:#000;
+    height: calc(100% - 140px);
+    padding: 20px 0;
+    >button{
+        margin: 0 auto;
+        width: 200px;
+        background: #1DA1F2;
+        color:#fff;
+        font-size: 1rem;
+        font-weight: 550;
+        letter-spacing: 1px;
+        border-radius: 30px;
+        :hover{
+            background: #1A91DA;
+        }
+    }
 `;
 const StyledLeftSidebarLink = styled.div`
-    
+    display: flex;
+    font-size: 20px !important;
+    margin: 20px 0;
+    align-items:center;
+    >h4{
+        padding: 10px;
+        margin-left: 10px;
+        border-radius: 30px;
+        transition: all 0.2s ease;
+    }
+    .MuiSvgIcon-root{
+        font-size: 30px !important;
+    }
+    :hover{
+        >h4{
+            cursor: pointer;
+            background-color:#B3DFFB;
+            color: #1DA1F2;
+        }
+    }
 `;
 const StyledLeftSidebarProfile = styled.div`
-    
+    width: 300px;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    align-items: center;
+    height: 100px;
+    >.profile__left{
+        display:flex;
+        >.profile__middle{
+            margin-left:10px;
+        }
+    }
+    >.profile__right{
+        >.MuiSvgIcon-root{
+            cursor: pointer;
+        }
+    }
 `;
 
 export default SidebarLeft
