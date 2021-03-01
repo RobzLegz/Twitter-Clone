@@ -10,11 +10,14 @@ import TodayIcon from '@material-ui/icons/Today';
 import db from '../firebase';
 import firebase from "firebase";
 import Tweet from './Tweet';
+import { selectUser } from '../features/userSlice';
+import { useSelector } from 'react-redux';
 
 const Chat = () => {
 
     const [tweetMessage, setTweetMessage] = useState("");
     const [tweets, setTweets] = useState([]);
+    const user = useSelector(selectUser);
 
     const submitTweet = (e) => {
         e.preventDefault();
@@ -22,6 +25,8 @@ const Chat = () => {
             db.collection("tweets").add({
                 tweetMessage: tweetMessage,
                 timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+                username: user.displayName,
+                userPhoto: user.photo,
             })
         }else{
             return;
@@ -43,7 +48,7 @@ const Chat = () => {
             </StyledChatHeader>
             <StyledChatBody>
                 <StyledChatTwitter>
-                    <Avatar />
+                    <Avatar src={user.photo} />
                     <form>
                         <input type="text" value={tweetMessage} onChange={(e) => setTweetMessage(e.target.value)} placeholder="What's happening?" required />
                         <div className="tweeting__bottom">
@@ -60,7 +65,7 @@ const Chat = () => {
                 </StyledChatTwitter>
                 <StyledChatMessages>
                     {tweets?.map((tweet) => (
-                        <Tweet key={tweet.id} id={tweet.id} tweet={tweet.tweetMessage} />
+                        <Tweet key={tweet.id} id={tweet.id} userPhoto={tweet.userPhoto} username={tweet.username} tweet={tweet.tweetMessage} />
                     ))}
                 </StyledChatMessages>
             </StyledChatBody>

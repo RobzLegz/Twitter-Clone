@@ -7,14 +7,14 @@ import RepeatIcon from '@material-ui/icons/Repeat';
 import PublishIcon from '@material-ui/icons/Publish';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 
-const Tweet = ({tweet, id}) => {
+const Tweet = ({tweet,userPhoto,username, id}) => {
     return (
         <StyledTweet>
-            <Avatar />
+            <Avatar src={userPhoto} />
             <StyledTweetRight>
                 <div className="tweet__header">
                     <div className="tweet__header--left">
-                        <h5>Username</h5>
+                        <h5>{username}</h5>
                         <p>15h</p>
                     </div>
                     <Button variant="circled"><MoreHorizIcon /></Button>

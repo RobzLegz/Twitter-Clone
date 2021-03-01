@@ -10,8 +10,13 @@ import ListAltOutlinedIcon from '@material-ui/icons/ListAltOutlined';
 import PersonOutlineOutlinedIcon from '@material-ui/icons/PersonOutlineOutlined';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import { Avatar, Button } from '@material-ui/core';
+import { useSelector } from 'react-redux';
+import { selectUser } from '../features/userSlice';
 
 const SidebarLeft = () => {
+
+    const user = useSelector(selectUser);
+
     return (
         <StyledLeftSidebar>
             <StyledLeftSidebarHeader>
@@ -54,10 +59,10 @@ const SidebarLeft = () => {
             </StyledLeftSidebarLinks>
             <StyledLeftSidebarProfile>
                 <div className="profile__left">
-                    <Avatar />
+                    <Avatar src={user.photo} />
                     <div className="profile__middle">
-                        <strong><p>Rob</p></strong>
-                        <small><p>@Robzlegz</p></small>
+                        <strong><p>{user.displayName}</p></strong>
+                        <small><p>@{user.email.slice(0,-10)}</p></small>
                     </div>
                 </div>
                 <div className="profile__right">
